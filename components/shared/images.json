@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_images",
+  "info": {
+    "name": "images",
+    "icon": "address-book"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "alt": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

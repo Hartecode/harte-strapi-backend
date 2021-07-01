@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_open_graphs",
+  "info": {
+    "name": "openGraph",
+    "icon": "globe"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "site_name": {
+      "type": "string"
+    },
+    "images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.images"
+    }
+  }
+}
