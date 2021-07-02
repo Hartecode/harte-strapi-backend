@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_cta_btns",
+  "info": {
+    "name": "CTABtn",
+    "icon": "greater-than"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "external": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
