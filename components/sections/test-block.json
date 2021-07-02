@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_test_blocks",
+  "info": {
+    "name": "Test block",
+    "icon": "anchor"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "richtext"
+    }
+  }
+}
