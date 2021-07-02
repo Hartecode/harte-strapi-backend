@@ -1,0 +1,68 @@
+{
+  "collectionName": "components_sections_hero_blocks",
+  "info": {
+    "name": "Hero Block",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "template": {
+      "type": "string",
+      "private": true,
+      "default": "hero-block"
+    },
+    "title": {
+      "type": "string"
+    },
+    "detail": {
+      "type": "text"
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "light",
+        "dark"
+      ]
+    },
+    "imgOverlayPer": {
+      "type": "integer",
+      "default": 0,
+      "max": 100,
+      "min": 0
+    },
+    "backgroundImage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.media-image"
+    },
+    "horPos": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "center"
+      ]
+    },
+    "verPos": {
+      "type": "enumeration",
+      "enum": [
+        "top",
+        "middle",
+        "bottom"
+      ]
+    },
+    "textPos": {
+      "type": "enumeration",
+      "enum": [
+        "start",
+        "center",
+        "end"
+      ]
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cta-btn"
+    }
+  }
+}
