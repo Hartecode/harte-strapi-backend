@@ -2,13 +2,14 @@
   "collectionName": "components_sections_hero_blocks",
   "info": {
     "name": "Hero Block",
-    "icon": "address-card"
+    "icon": "address-card",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "template": {
       "type": "string",
-      "private": true,
+      "private": false,
       "default": "hero-block"
     },
     "title": {
