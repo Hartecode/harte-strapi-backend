@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_video_types",
+  "info": {
+    "name": "Video Type",
+    "icon": "film"
+  },
+  "options": {},
+  "attributes": {
+    "src": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    }
+  }
+}
