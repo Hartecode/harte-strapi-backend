@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_shared_cards",
+  "info": {
+    "name": "Card",
+    "icon": "copy",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.media-image"
+    },
+    "title": {
+      "type": "string"
+    },
+    "copy": {
+      "type": "text"
+    },
+    "layout": {
+      "type": "enumeration",
+      "enum": [
+        "column",
+        "row",
+        "rowReverse"
+      ]
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    }
+  }
+}
