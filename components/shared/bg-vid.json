@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_bg_vids",
+  "info": {
+    "name": "bgVid",
+    "icon": "photo-video"
+  },
+  "options": {},
+  "attributes": {
+    "video": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.video-type"
+    },
+    "poster": {
+      "type": "string"
+    }
+  }
+}
