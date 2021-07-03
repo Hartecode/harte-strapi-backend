@@ -21,6 +21,11 @@
         "odds",
         "evens"
       ]
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.card"
     }
   }
 }
