@@ -1,0 +1,72 @@
+{
+  "collectionName": "components_sections_text_blocks",
+  "info": {
+    "name": "Text Block",
+    "icon": "keyboard"
+  },
+  "options": {},
+  "attributes": {
+    "template": {
+      "type": "string",
+      "default": "text-block"
+    },
+    "richText": {
+      "type": "richtext",
+      "required": true
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cta-btn"
+    },
+    "textPos": {
+      "type": "enumeration",
+      "enum": [
+        "center",
+        "start",
+        "end"
+      ]
+    },
+    "groupPosition": {
+      "type": "enumeration",
+      "enum": [
+        "center",
+        "start",
+        "end"
+      ]
+    },
+    "colorScheme": {
+      "type": "enumeration",
+      "enum": [
+        "blue",
+        "cyan",
+        "gray",
+        "green",
+        "orange",
+        "pink",
+        "purple",
+        "red",
+        "teal",
+        "yellow",
+        "whiteAlpha",
+        "blackAlpha",
+        "linkedin",
+        "facebook",
+        "messenger",
+        "whatsapp",
+        "twitter",
+        "telegram"
+      ]
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "link",
+        "outline",
+        "solid",
+        "ghost",
+        "unstyled"
+      ]
+    }
+  }
+}
