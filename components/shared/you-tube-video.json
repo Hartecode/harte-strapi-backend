@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_you_tube_videos",
+  "info": {
+    "name": "youTubeVideo",
+    "icon": "broadcast-tower"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    }
+  }
+}
