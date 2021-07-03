@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_deck_blocks",
+  "info": {
+    "name": "Deck Block",
+    "icon": "layer-group"
+  },
+  "options": {},
+  "attributes": {
+    "layout": {
+      "type": "enumeration",
+      "enum": [
+        "rows",
+        "rowsReverse",
+        "alternatingRows",
+        "cards"
+      ]
+    },
+    "alternate": {
+      "type": "enumeration",
+      "enum": [
+        "odds",
+        "evens"
+      ]
+    }
+  }
+}
