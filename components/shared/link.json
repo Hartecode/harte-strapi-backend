@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_links",
+  "info": {
+    "name": "link",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string",
+      "required": true
+    },
+    "isExternal": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
