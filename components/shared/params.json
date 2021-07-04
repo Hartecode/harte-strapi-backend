@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_params",
+  "info": {
+    "name": "params",
+    "icon": "columns",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "test": {
+      "type": "json"
+    }
+  }
+}

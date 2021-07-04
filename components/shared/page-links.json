@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_page_links",
+  "info": {
+    "name": "pageLinks",
+    "icon": "external-link-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}

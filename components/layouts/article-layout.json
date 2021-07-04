@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_layouts_article_layouts",
+  "info": {
+    "name": "Article Layout",
+    "icon": "atlas",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "template": {
+      "type": "string",
+      "default": "article-layout"
+    },
+    "article": {
+      "model": "article"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "configs",
+  "info": {
+    "name": "config",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "defaultSeo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "logo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.media-image"
+    },
+    "pageLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.page-links"
+    }
+  }
+}
