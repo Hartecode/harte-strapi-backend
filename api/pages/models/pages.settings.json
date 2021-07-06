@@ -12,12 +12,12 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Label": {
+    "label": {
       "type": "string"
     },
     "slug": {
       "type": "uid",
-      "targetField": "Label"
+      "targetField": "label"
     },
     "pageSEO": {
       "type": "component",
@@ -42,6 +42,10 @@
       "type": "boolean",
       "default": false,
       "unique": false
+    },
+    "keywords": {
+      "via": "pages",
+      "collection": "keywords"
     }
   }
 }
