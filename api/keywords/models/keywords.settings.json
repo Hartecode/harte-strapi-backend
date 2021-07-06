@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "keywords",
+  "info": {
+    "name": "keywords",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "wordOrPhrase": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "wordOrPhrase"
+    },
+    "pages": {
+      "collection": "pages",
+      "via": "keywords",
+      "dominant": true
+    }
+  }
+}
