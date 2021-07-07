@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/pages/search",
+      "handler": "pages.searchPages",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/pages/count",
       "handler": "pages.count",
       "config": {
