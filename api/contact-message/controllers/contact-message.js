@@ -1,8 +1,6 @@
 'use strict';
 
 const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
-// const Filter = require('bad-words');
-// const filter = new Filter();
 
 /**
  * Adds Contact Message to database and send email out
@@ -24,19 +22,26 @@ module.exports = {
     entity = sanitizeEntity(entity, { model: strapi.models['contact-message'] });
 
     const toEmail = ctx.request.body.email;
-    const subject = ctx.request.body.subject;
-    // send an email by using the email plugin
-    await strapi.plugins['email'].services.email.send({
-      to: toEmail,
-      from: 'no-reply@hartecode.com',
-      subject: `Message: ${subject}`,
-      text: `
-        Message #${entity.id}.
 
-        Comment:
-        ${entity.message}
-      `,
-    });
+    try {
+      await strapi.plugins['email-designer'].services.email.sendTemplatedEmail(
+        {
+          to: toEmail, // required
+          from: 'no-reply@hartecode.com', // optional if /config/plugins.js -> email.settings.defaultFrom is set
+          attachments: [], // optional array of files
+        },
+        {
+          templateId: '60ee7424671d125231154abf', // required - you can get the template id from the admin panel
+        },
+        {
+          // this object must include all variables you're using in your email template
+          ...entity
+        }
+      );
+    } catch (err) {
+      strapi.log.debug('📺: ', err);
+      return ctx.badRequest(null, err);
+    }
 
     return entity;
   }
