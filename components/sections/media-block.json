@@ -16,7 +16,8 @@
       "enum": [
         "video",
         "image"
-      ]
+      ],
+      "required": true
     },
     "blockSize": {
       "type": "enumeration",
@@ -29,7 +30,7 @@
     },
     "bgImg": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "shared.media-image"
     },
     "overlayOpacity": {
