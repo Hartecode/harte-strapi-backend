@@ -6,6 +6,11 @@
   },
   "options": {},
   "attributes": {
+    "template": {
+      "type": "string",
+      "private": false,
+      "default": "deck-block"
+    },
     "layout": {
       "type": "enumeration",
       "enum": [
