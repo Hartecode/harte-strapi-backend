@@ -37,10 +37,6 @@
         "layouts.article-layout"
       ]
     },
-    "category": {
-      "model": "category",
-      "via": "pages"
-    },
     "homePage": {
       "type": "boolean",
       "default": false,
@@ -49,6 +45,9 @@
     "keywords": {
       "via": "pages",
       "collection": "keywords"
+    },
+    "parent_page": {
+      "model": "pages"
     }
   }
 }

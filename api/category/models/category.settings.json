@@ -21,10 +21,6 @@
     "articles": {
       "via": "category",
       "collection": "article"
-    },
-    "pages": {
-      "via": "category",
-      "collection": "pages"
     }
   }
 }

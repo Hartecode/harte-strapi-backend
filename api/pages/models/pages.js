@@ -2,15 +2,16 @@
 
 async function generateFullPath(data) {
   if (data.slug && !data.homePage) {
-    const path = []
-    if(data.category) {
-      const entity = await strapi.query("category").find({ _id: data.category });
+    let parentPath = ''
+    if(data.parent_page) {
+      const parentPage = await strapi.query("pages").findOne({ id: data.parent_page })
+      parentPath = parentPage.path
     }
-    path.push(data.slug)
-    data.path = `/${path.join('/')}`
+    data.path = `${parentPath}/${data.slug}`
   } else if (data.homePage) {
     data.path = '/'
   }
+  return data
 }
 
 /**
@@ -21,11 +22,11 @@ async function generateFullPath(data) {
 module.exports = {
   lifecycles: {
     beforeCreate: async (data) => {
-      generateFullPath(data)
+      data = await generateFullPath(data)
     },
     // auto update the path field 
     beforeUpdate: async (params, data) => {
-      generateFullPath(data)
+      data = await generateFullPath(data)
     },
   },
 };
