@@ -10,8 +10,6 @@ async function generateFullPath(data) {
     data.path = `/${path.join('/')}`
   } else if (data.homePage) {
     data.path = '/'
-  } else {
-    data.path = ''
   }
 }
 
