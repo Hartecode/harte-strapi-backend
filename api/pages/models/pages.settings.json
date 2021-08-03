@@ -19,6 +19,9 @@
       "type": "uid",
       "targetField": "label"
     },
+    "path": {
+      "type": "string"
+    },
     "pageSEO": {
       "type": "component",
       "repeatable": false,

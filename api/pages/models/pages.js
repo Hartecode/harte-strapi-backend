@@ -5,4 +5,22 @@
  * to customize this model
  */
 
-module.exports = {};
+module.exports = {
+  lifecycles: {
+    // auto update the path field 
+    async beforeUpdate(params, data) {
+      if (data.slug && !data.homePage) {
+        const path = []
+        if(data.category) {
+          const entity = await strapi.services.category.find({ _id: data.category });
+        }
+        path.push(data.slug)
+        data.path = `/${path.join('/')}`
+      } else if (data.homePage) {
+        data.path = '/'
+      } else {
+        data.path = ''
+      }
+    },
+  },
+};

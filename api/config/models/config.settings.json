@@ -22,10 +22,10 @@
       "repeatable": false,
       "component": "shared.media-image"
     },
-    "pageLinks": {
+    "mega_menu": {
       "type": "component",
       "repeatable": true,
-      "component": "shared.page-links"
+      "component": "shared.menu-item"
     }
   }
 }

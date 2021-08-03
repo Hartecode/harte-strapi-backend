@@ -20,8 +20,8 @@
       "targetField": "wordOrPhrase"
     },
     "pages": {
-      "collection": "pages",
       "via": "keywords",
+      "collection": "pages",
       "dominant": true
     }
   }
