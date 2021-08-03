@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_subitems",
+  "info": {
+    "name": "subitem",
+    "icon": "object-ungroup",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "page": {
+      "model": "pages"
+    }
+  }
+}

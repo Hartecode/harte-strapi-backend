@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_menu_items",
+  "info": {
+    "name": "menuItem",
+    "icon": "sitemap",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subitems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.subitem"
+    },
+    "page": {
+      "model": "pages"
+    }
+  }
+}
