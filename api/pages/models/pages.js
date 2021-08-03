@@ -1,6 +1,6 @@
 'use strict';
 
-function generateFullPath(data) {
+async function generateFullPath(data) {
   if (data.slug && !data.homePage) {
     const path = []
     if(data.category) {
