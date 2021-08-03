@@ -48,6 +48,9 @@
     },
     "parent_page": {
       "model": "pages"
+    },
+    "static_path": {
+      "type": "json"
     }
   }
 }

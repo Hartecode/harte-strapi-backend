@@ -1,15 +1,25 @@
 'use strict';
 
 async function generateFullPath(data) {
+  const staticPath = {
+    slug: []
+  }
+
   if (data.slug && !data.homePage) {
     let parentPath = ''
     if(data.parent_page) {
       const parentPage = await strapi.query("pages").findOne({ id: data.parent_page })
       parentPath = parentPage.path
+      if (parentPage.slug) staticPath.slug.push(parentPage.slug)
     }
+    staticPath.slug.push(data.slug)
+    data.static_path = staticPath
     data.path = `${parentPath}/${data.slug}`
   } else if (data.homePage) {
+    staticPath.slug.push('')
     data.path = '/'
+    data.static_path = staticPath
+
   }
   return data
 }

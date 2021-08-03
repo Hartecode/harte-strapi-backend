@@ -13,24 +13,11 @@ module.exports = {
    * @return {Promise}
    */
    async find(ctx) {
-     const entities = await strapi.services.pages.find();
-     const homePage = entities.filter(v => v.homePage).shift();
-     const paths = entities.map(page => {
-       let slug = []
-       if (page === homePage){
-         slug.push("")
-       } else {
-         if(page?.category?.slug) {
-          slug.push(page?.category?.slug)
-         }
-         slug.push(page?.slug)
-       }
+    const entities = await strapi.services.pages.find();
+    const paths = entities.map(page => ({
+      params: page.static_path
+    }))
 
-       return {
-          "params": { slug }
-        }
-     })
-
-     return paths
+    return paths
   },
 };
