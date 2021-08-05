@@ -4,11 +4,17 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from 'styled-components';
 
+// add styling here to edit the content look
+// https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/content-styles.html
 const Wrapper = styled.div`
   .ck-editor__main {
     min-height: 200px;
     > div {
       min-height: 200px;
+    }
+    
+    > .ck.ck-content {
+      color: #424242;
     }
   }
 `;

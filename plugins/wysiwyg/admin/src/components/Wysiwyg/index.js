@@ -6,6 +6,21 @@ import { Label, InputDescription, InputErrors } from 'strapi-helper-plugin';
 import Editor from '../CKEditor';
 import MediaLib from '../MediaLib';
 
+const imgSizes = [
+  { size: 'xsmall', bp: 400 },
+  { size: 'small', bp: 768 },
+  { size: 'medium', bp: 1023 },
+  { size: 'large', bp: 1440 },
+]
+
+const srcSet = (format) => {
+  return imgSizes.reduce((acc, cur) => {
+    return `${acc}${acc ? ', ' :''}${format[cur.size].url} ${cur.bp}`
+  }, '')
+}
+
+
+
 const Wysiwyg = ({
   inputDescription,
   errors,
@@ -24,9 +39,8 @@ const Wysiwyg = ({
 
   const handleChange = data => {
     if (data.mime.includes('image')) {
-      const imgTag = `<p><img src="${data.url}" caption="${data.caption}" alt="${data.alternativeText}"></img></p>`;
+      const imgTag = `<img src="${data.url}" srcset="${srcSet(data.formats)}" caption="${data.caption}" alt="${data.alternativeText}" loading="lazy"></img>`;
       const newValue = value ? `${value}${imgTag}` : imgTag;
-
       onChange({ target: { name, value: newValue } });
     }
 
@@ -44,7 +58,9 @@ const Wysiwyg = ({
       }}
     >
       <Label htmlFor={name} message={label} style={{ marginBottom: 10 }} />
-      <div>
+      <div style={{
+        marginBottom: '1rem'
+      }}>
         <Button color="primary" onClick={handleToggle}>
           MediaLib
         </Button>
