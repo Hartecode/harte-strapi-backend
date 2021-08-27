@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_search_sort_blocks",
+  "info": {
+    "name": "SearchSortBlock",
+    "icon": "search"
+  },
+  "options": {},
+  "attributes": {
+    "template": {
+      "type": "string",
+      "default": "search-sort-block"
+    },
+    "collection_types": {
+      "type": "enumeration",
+      "enum": [
+        "pages",
+        "articles"
+      ],
+      "required": true
+    }
+  }
+}
