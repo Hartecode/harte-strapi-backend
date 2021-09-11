@@ -35,7 +35,8 @@
         "sections.text-block",
         "sections.hero-block",
         "layouts.article-layout",
-        "sections.search-sort-block"
+        "sections.search-sort-block",
+        "sections.contact-form-block"
       ]
     },
     "homePage": {

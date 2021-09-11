@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_contact_form_blocks",
+  "info": {
+    "name": "Contact Form Block",
+    "icon": "concierge-bell"
+  },
+  "options": {},
+  "attributes": {
+    "template": {
+      "type": "string",
+      "default": "contact-form-block",
+      "required": true
+    }
+  }
+}
