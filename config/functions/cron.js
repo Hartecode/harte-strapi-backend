@@ -18,4 +18,23 @@ module.exports = {
   // '0 1 * * 1': () => {
   //
   // }
+  '*/1 * * * *': async () => {
+    console.log('running');
+    //fetch articles to publish
+    const draftArticleToPublish = await strapi.api.pages.services.pages.find({
+      published_at: null, 
+      // schedule_publish_at_null: true,      // so we add another condition here to filter entries that have not been published
+      // schedule_publish_at_lt: new Date(),
+    });
+
+    console.log(draftArticleToPublish);
+
+    // // update published_at of articles
+    // await Promise.all(draftArticleToPublish.map(page => {
+    //   return strapi.api.pages.services.pages.update(
+    //     { id: page.id },
+    //     { schedule_published_at: new Date() }
+    //   );
+    // }));
+  },
 };

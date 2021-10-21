@@ -57,6 +57,9 @@
     "article_template": {
       "via": "page",
       "model": "article"
+    },
+    "schedule_publish_at": {
+      "type": "datetime"
     }
   }
 }
