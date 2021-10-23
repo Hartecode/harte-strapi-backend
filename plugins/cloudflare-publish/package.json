@@ -1,21 +1,21 @@
 {
   "name": "strapi-plugin-cloudflare-publish",
-  "version": "0.0.0",
-  "description": "This is the description of the plugin.",
+  "version": "1.0.0",
+  "description": "A plugin to easily trigger Cloudflare Pages Deployment from Strapi.",
   "strapi": {
-    "name": "cloudflare-publish",
-    "icon": "plug",
-    "description": "Description of cloudflare-publish plugin."
+    "name": "Cloudflare Publish",
+    "icon": "cloud",
+    "description": "Publish changes to Cloudflare Pages"
   },
   "dependencies": {},
   "author": {
-    "name": "A Strapi developer",
-    "email": "",
-    "url": ""
+    "name": "hartecode",
+    "email": "hartecode@gmail.com",
+    "url": "https://www.hartecode.com"
   },
   "maintainers": [
     {
-      "name": "A Strapi developer",
+      "name": "hartecode",
       "email": "",
       "url": ""
     }

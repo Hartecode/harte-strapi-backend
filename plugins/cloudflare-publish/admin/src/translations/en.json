@@ -5,5 +5,11 @@
     "home.prompt": "Clicking the below button will trigger the site to rebuild with new content, are you sure?",
     "home.prompt.confirm": "Are you sure you wish to publish?",
     "home.busy": "The site is currently rebuilding, please wait.",
-    "home.button.publish": "Publish"
+    "home.button.publish": "Publish",
+    "home.current.deploy": "Published Site",
+    "home.publish.code": "Published Code",
+    "home.publish.on": "Published on",
+    "home.publish.at": "at",
+    "home.publish.visit": "Visit site",
+    "home.publish.preview": "Preview url:"
   }

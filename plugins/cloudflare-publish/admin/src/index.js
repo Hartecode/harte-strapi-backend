@@ -1,4 +1,3 @@
-import React from 'react';
 import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import App from './containers/App';

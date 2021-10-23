@@ -51,7 +51,7 @@ module.exports = {
     );
 
     const currentDeployment = data.result[0];
-    console.log(currentDeployment)
+
     const busy = !(currentDeployment &&  currentDeployment["latest_stage"].name === "deploy");
 
     ctx.send({ busy, result: currentDeployment });
