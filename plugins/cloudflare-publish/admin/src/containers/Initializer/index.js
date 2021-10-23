@@ -15,6 +15,7 @@ const Initializer = ({ updatePlugin }) => {
   useEffect(() => {
     ref.current(pluginId, 'isReady', true);
   }, []);
+  
 
   return null;
 };

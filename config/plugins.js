@@ -15,6 +15,12 @@ module.exports = ({ env }) => ({
       api_key: env('CLOUDINARY_KEY'),
       api_secret: env('CLOUDINARY_SECRET'),
     },
+  },
+  "cloudflare-publish": {
+    accountId: 'f83f709cf7f075256fe184708fc04aaa',
+    projectName: 'next-strapi-frontend',
+    authEmail: 'hartecode@gmail.com',
+    authKey: 'fd1269d18eff376f8c303dc58c091c076ff7f'
   }
 })
  

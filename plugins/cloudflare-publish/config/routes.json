@@ -7,6 +7,22 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/check",
+      "handler": "cloudflare-publish.check",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/publish",
+      "handler": "cloudflare-publish.publish",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
