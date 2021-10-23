@@ -4,6 +4,8 @@ const axios = require("axios");
 
 const pluginId = require("../admin/src/pluginId");
 
+const url = (accountId, projectName) => `https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/${projectName}/deployments`;
+
 /**
  * cloudflare-publish.js controller
  *
@@ -28,54 +30,56 @@ module.exports = {
   },
   // Check if workflow is in_progress https://docs.github.com/en/rest/reference/actions#list-workflow-runs
   check: async (ctx) => {
-    const { owner, repo, workflow_id, token, branch } = strapi.plugins[
-      pluginId
-    ].config;
-
-    const headers = {
-      Accept: "application/vnd.github.v3+json",
-      Authorization: "token " + token,
-    };
-
-    const url = `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow_id}/runs?branch=${branch}`;
-    const { data: inProgressData } = await axios.get(
-      `${url}&status=in_progress`,
-      {
-        headers,
-      }
-    );
-    const { data: queuedData } = await axios.get(`${url}&status=queued`, {
-      headers,
-    });
-    const busy = !!(inProgressData.total_count + queuedData.total_count);
-
-    ctx.send({ busy });
-  },
-
-  publish: async (ctx) => {
-    console.log(pluginId)
     const {
       accountId,
       projectName,
       authEmail,
       authKey
     } = strapi.plugins[pluginId].config;
-    console.log({
-      accountId,
-      projectName,
-      authEmail,
-      authKey
-    });
+ 
     const headers = {
       "X-Auth-Email": authEmail,
       "X-Auth-Key": authKey,
     };
 
+    const apiUrl = url(accountId, projectName)
+    const { data } = await axios.get(
+      apiUrl,
+      {
+        headers,
+      }
+    );
 
-    const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/${projectName}/deployments`;
-    const { success, result } = await axios.post(url, { headers });
-    console.log(success, result)
+    const currentDeployment = data.result[0];
+    console.log(currentDeployment)
+    const busy = !(currentDeployment &&  currentDeployment["latest_stage"].name === "deploy");
 
-    ctx.send({ success, result });
+    ctx.send({ busy, result: currentDeployment });
+  },
+
+  publish: async (ctx) => {
+    const {
+      accountId,
+      projectName,
+      authEmail,
+      authKey
+    } = strapi.plugins[pluginId].config;
+ 
+    const headers = {
+      "X-Auth-Email": authEmail,
+      "X-Auth-Key": authKey,
+    };
+
+    const apiUrl = url(accountId, projectName);
+
+    try{
+      const { data } = await axios.post(apiUrl, {}, { headers });
+      console.log(success, data.result)
+
+      ctx.send({ success: data.success, result: data.result });
+    } catch (err) {
+      console.log(err)
+    }
+  
   },
 };

@@ -13,26 +13,26 @@ const POLL_INTERVAL = 10000;
 
 const HomePage = () => {
   const { formatMessage } = useGlobalContext();
-  const [ready, setReady] = useState(true);
+  const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
 
-  // useEffect(() => {
-  //   let timeout;
-  //   const checkBusy = async () => {
-  //     const { busy } = await request(`/${pluginId}/check`, { method: "GET" });
+  useEffect(() => {
+    let timeout;
+    const checkBusy = async () => {
+      const { busy } = await request(`/${pluginId}/check`, { method: "GET" });
 
-  //     setBusy(busy);
-  //     setReady(true);
+      setBusy(busy);
+      setReady(true);
 
-  //     timeout = setTimeout(checkBusy, POLL_INTERVAL);
-  //   };
+      timeout = setTimeout(checkBusy, POLL_INTERVAL);
+    };
 
-  //   checkBusy();
+    checkBusy();
 
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, []);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
 
   const triggerPublish = async () => {
     setBusy(true);
