@@ -5,6 +5,17 @@ const axios = require("axios");
 const pluginId = require("../admin/src/pluginId");
 
 const url = (accountId, projectName) => `https://api.cloudflare.com/client/v4/accounts/${accountId}/pages/projects/${projectName}/deployments`;
+const dateTime = (rawDate) => {
+  const date = new Date(rawDate);
+  // get the date as a string
+  const cleanDate = date.toDateString();
+  // get the time as a string
+  const time = date.toLocaleTimeString();
+  return {
+    date: cleanDate,
+    time
+  }
+}
 
 /**
  * cloudflare-publish.js controller
@@ -28,7 +39,7 @@ module.exports = {
       message: 'ok'
     });
   },
-  // Check if workflow is in_progress https://docs.github.com/en/rest/reference/actions#list-workflow-runs
+
   check: async (ctx) => {
     const {
       accountId,
@@ -42,19 +53,45 @@ module.exports = {
       "X-Auth-Key": authKey,
     };
 
-    const apiUrl = url(accountId, projectName)
-    const { data } = await axios.get(
-      apiUrl,
-      {
-        headers,
+    try {
+      const apiUrl = url(accountId, projectName)
+      const { data } = await axios.get(
+        apiUrl,
+        {
+          headers,
+        }
+      );
+      const currentDeployment = data.result[0];
+      const busy = !(currentDeployment &&  currentDeployment["latest_stage"].name === "deploy");
+      let deploy = null;
+
+      if (currentDeployment) {
+        const rawDate = currentDeployment["latest_stage"].ended_on;
+        const { date, time } = dateTime(rawDate);
+        deploy = {
+          status: currentDeployment["latest_stage"].status,
+          shortId: currentDeployment.short_id,
+          siteUrl: currentDeployment.aliases ? currentDeployment.aliases[0] : `https://${currentDeployment.project_name}.pages.dev`,
+          previewURl: currentDeployment.url,
+          deploymentTime: {
+            raw: currentDeployment.latest_stage.ended_on,
+            date,
+            time
+          }
+        };
       }
-    );
 
-    const currentDeployment = data.result[0];
-
-    const busy = !(currentDeployment &&  currentDeployment["latest_stage"].name === "deploy");
-
-    ctx.send({ busy, result: currentDeployment });
+      ctx.send({
+        numberOfDeploys: data['result_info']['total_count'],
+        busy,
+        status: currentDeployment.latest_stage.name,
+        deploy
+      });
+    } catch(e) {
+      ctx.send({
+        status: 'failed',
+      })
+    }
   },
 
   publish: async (ctx) => {
@@ -74,11 +111,11 @@ module.exports = {
 
     try{
       const { data } = await axios.post(apiUrl, {}, { headers });
-      console.log(success, data.result)
-
+  
       ctx.send({ success: data.success, result: data.result });
     } catch (err) {
       console.log(err)
+      ctx.send({ success: 'failed' });
     }
   
   },

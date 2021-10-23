@@ -12,57 +12,48 @@ import pluginId from "../../pluginId";
 
 const POLL_INTERVAL = 10000;
 
-const dateTime = (rawDate) => {
-  const date = new Date(rawDate);
-  // get the date as a string
-  const cleanDate = date.toDateString();
-  // get the time as a string
-  const time = date.toLocaleTimeString();
-  return {
-    date: cleanDate,
-    time
-  }
-
-}
-const publishedData = {
-  shortId: "f64788e9",
-  siteUrl: "https://next-strapi-frontend.pages.dev/",
-  previewURl: "https://5e73a928.next-strapi-frontend.pages.dev",
-  deploymentTime: {
-    raw: "2018-07-07T20:00:00",
-    date: "Sat Oct 23 2021",
-    time: "8:58:16 AM"
-  }
-}
-
 const HomePage = () => {
   const { formatMessage } = useGlobalContext();
-  const [ready, setReady] = useState(true);
+  const [ready, setReady] = useState(false);
+  const [publishStatus, setPublishStatus] = useState('');
   const [busy, setBusy] = useState(false);
-  const [publishData, setPublishData] = useState(publishedData);
+  const [publishData, setPublishData] = useState(null);
 
-  // useEffect(() => {
-  //   let timeout;
-  //   const checkBusy = async () => {
-  //     const { busy } = await request(`/${pluginId}/check`, { method: "GET" });
+  useEffect(() => {
+    let timeout;
+    const checkBusy = async () => {
+      const { 
+        busy,
+        numberOfDeploys,
+        status,
+        deploy
+      } = await request(`/${pluginId}/check`, { method: "GET" });
 
-  //     setBusy(busy);
-  //     setReady(true);
+      setPublishStatus(status);
+      setBusy(numberOfDeploys > 0 && busy);
+      setReady(true);
+      setPublishData(deploy)
+      if (!busy) {
+        setPublishData(deploy)
+      } else {
+        setPublishData(null)
+      }
 
-  //     timeout = setTimeout(checkBusy, POLL_INTERVAL);
-  //   };
 
-  //   checkBusy();
+      timeout = setTimeout(checkBusy, POLL_INTERVAL);
+    };
 
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, []);
+    checkBusy();
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
 
   const triggerPublish = async () => {
     setBusy(true);
-
-    await request(`/${pluginId}/publish`, { method: "GET" });
+    setPublishData(null)
+    const resp = await request(`/${pluginId}/publish`, { method: "GET" })
   };
 
   const handleClick = () => {
@@ -81,6 +72,9 @@ const HomePage = () => {
       {ready ? (
         busy ? (
           <>
+            <Text fontWeight="bold" fontSize="md">{formatMessage({ id: `${pluginId}.home.current.status` })} <span 
+              style={{color: '#e2a01d'}}>{publishStatus}
+              </span></Text>
             <LoadingBar />
             <Text>{formatMessage({ id: `${pluginId}.home.busy` })}</Text>
           </>
