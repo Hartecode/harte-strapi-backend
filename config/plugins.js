@@ -17,10 +17,10 @@ module.exports = ({ env }) => ({
     },
   },
   "cloudflare-publish": {
-    accountId: 'f83f709cf7f075256fe184708fc04aaa',
-    projectName: 'next-strapi-frontend',
-    authEmail: 'hartecode@gmail.com',
-    authKey: 'fd1269d18eff376f8c303dc58c091c076ff7f'
+    accountId: env('CLOUDFLARE_ACCOUNT_ID'),
+    projectName: env('CLOUDFLARE_PROJECT_NAME'),
+    authEmail: env('CLOUDFLARE_AUTH_EMAIL'),
+    authKey: env('CLOUDFLARE_AUTH_KEY')
   }
 })
  
