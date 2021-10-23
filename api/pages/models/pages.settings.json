@@ -53,10 +53,6 @@
     },
     "static_path": {
       "type": "json"
-    },
-    "article_template": {
-      "via": "page",
-      "model": "article"
     }
   }
 }

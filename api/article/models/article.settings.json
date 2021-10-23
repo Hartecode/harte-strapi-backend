@@ -37,10 +37,6 @@
       "via": "articles",
       "model": "writer"
     },
-    "page": {
-      "via": "article_template",
-      "model": "pages"
-    },
     "image": {
       "type": "component",
       "repeatable": false,
