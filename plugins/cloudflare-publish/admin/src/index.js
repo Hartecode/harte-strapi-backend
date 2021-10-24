@@ -38,10 +38,11 @@ export default strapi => {
           name,
           permissions: [
             // Uncomment to set the permissions of the plugin here
-            // {
-            //   action: '', // the action name should be plugins::plugin-name.actionType
-            //   subject: null,
-            // },
+            {
+              action:  `plugins::${pluginId}.read`, // the action name should be plugins::plugin-name.actionType
+              // The action must be registered in bootstrap.js or things break
+              subject: null,
+            }
           ],
         },
       ],
