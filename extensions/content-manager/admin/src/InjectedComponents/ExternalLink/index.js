@@ -37,14 +37,7 @@ const StyledExternalLink = styled.a`
 `;
 
 const ExternalLink = () => {
-    // const {
-    //   clientPreviewUrl,
-    //   clientPreviewSecret
-    // } = strapi.plugins['content-manager'].config;
     const { modifiedData, layout }= useContentManagerEditViewDataManager();
-
-    // console.log(clientPreviewUrl,
-    //   clientPreviewSecret)
   
     // only have preview mode for pages
     if (layout.apiID !== 'pages') {
