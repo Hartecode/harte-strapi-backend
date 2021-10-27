@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStrapi, formatComponentData, useContentManagerEditViewDataManager } from 'strapi-helper-plugin';
+import { useContentManagerEditViewDataManager } from 'strapi-helper-plugin';
 import EyeIcon from './view.svg';
+const axios = require("axios");
 
 const StyledExternalLink = styled.a`
   display: block;
@@ -36,11 +37,15 @@ const StyledExternalLink = styled.a`
 `;
 
 const ExternalLink = () => {
-    const CLIENT_PREVIEW_URL= 'http://localhost:3000';
-    const CLIENT_PREVIEW_SECRET = '****';
+    // const {
+    //   clientPreviewUrl,
+    //   clientPreviewSecret
+    // } = strapi.plugins['content-manager'].config;
+    const { modifiedData, layout }= useContentManagerEditViewDataManager();
 
-    const { allLayoutData, modifiedData, layout }= useContentManagerEditViewDataManager();
-
+    // console.log(clientPreviewUrl,
+    //   clientPreviewSecret)
+  
     // only have preview mode for pages
     if (layout.apiID !== 'pages') {
         return null
@@ -49,7 +54,6 @@ const ExternalLink = () => {
     if (modifiedData.published_at) {
         return null;
     }
-    console.log( JSON.stringify(allLayoutData));
 
     if (!modifiedData.slug) {
         return null;
@@ -62,7 +66,7 @@ const ExternalLink = () => {
     return (
         <li>
         <StyledExternalLink
-            href={`${CLIENT_PREVIEW_URL}/api/preview?secret=${CLIENT_PREVIEW_SECRET}&slug=${modifiedData.slug}&locale=${modifiedData.locale}&apiID=${layout.apiID}&kind=${layout.kind}`}
+            href={`${CLIENT_PREVIEW_URL}/api/preview?secret=${CLIENT_PREVIEW_SECRET}&slug=${modifiedData.slug}`}
             target="_blank"
             rel="noopener noreferrer"
             title="page preview"
