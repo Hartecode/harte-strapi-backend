@@ -13,25 +13,47 @@ module.exports = {
    * @param {*} ctx 
    * @returns {Promise}
    */
-  async searchPages(ctx) {
-    const page = ctx.query.page && !isNaN(ctx.query.page) ? ctx.query.page : 1
-    const limit = ctx.query.limit && !isNaN(ctx.query.limit) ? ctx.query.limit : 10
+  async searchPages({ query }) {
+    const { page=1, limit=10, parent=null, find:findQuery ='', sort=null } = query
+    const sortMethod = {
+      NEW: {
+        _sort: 'published_at:DESC'
+      },
+      OlD: {
+        _sort: 'published_at:ASC'
+      },
+      ASC: {
+        _sort: 'title:ASC'
+      },
+      DESC: {
+        _sort: 'title:DESC'
+      }
+    }
+    const sortOpt = sort ? sortMethod[sort] : null;
+    
     // removing the home page from the search. Search through label and keywords.
-    const query = {
+    const searchQuery = {
       _where: [
         { homePage: false },
         {
           _or: [
-            { label_contains: ctx.query.find },
+            { label_contains: findQuery },
             { 
-              "keywords.wordOrPhrase_contains": ctx.query.find 
+              "keywords.wordOrPhrase_contains": findQuery
             }
           ]
         }
-      ]
+      ],
+      ...sortOpt
     }
 
-    const totalResults =  await strapi.query('pages').find(query)
+    if (parent) {
+      searchQuery._where.push({
+        "parent_page.slug": parent
+      })
+    }
+
+    const totalResults =  await strapi.query('pages').find(searchQuery)
     const totalPages = Math.ceil(totalResults.length / limit)
     const results = totalResults.slice(limit * (page - 1), limit * page).map(entity => sanitizeEntity(entity, { 
       model: strapi.models.pages 
