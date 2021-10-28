@@ -54,6 +54,11 @@
     },
     "static_path": {
       "type": "json"
+    },
+    "tile": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.card"
     }
   }
 }
