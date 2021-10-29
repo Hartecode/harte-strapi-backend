@@ -10,9 +10,6 @@
     "template": {
       "type": "string",
       "default": "article-layout"
-    },
-    "article": {
-      "model": "article"
     }
   }
 }
